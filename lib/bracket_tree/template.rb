@@ -10,7 +10,7 @@ module BracketTree
         def by_size size
           filename = File.join location, "#{size}.json"
 
-          if File.exists? filename
+          if File.exist? filename
             from_json JSON.parse(File.read(filename), symbolize_names: true)
           else
             return nil
