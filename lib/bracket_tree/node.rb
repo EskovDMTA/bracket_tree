@@ -11,6 +11,14 @@ module BracketTree
       @payload.send sym, *args, &block
     end
 
+    def self.from_h(hash)
+      node = Node.new(hash['position'], hash['payload'])
+      node.instance_variable_set(:@left, from_h(hash['left'])) if hash['left']
+      node.instance_variable_set(:@right, from_h(hash['right'])) if hash['right']
+
+      node
+    end
+
     def to_h
       {
         position: @position,
@@ -19,5 +27,6 @@ module BracketTree
         right: @right ? @right.to_h : nil
       }
     end
+
   end
 end

@@ -52,6 +52,21 @@ module BracketTree
 
           bracket
         end
+
+        def from_json json_data
+          data = JSON.parse(json_data)
+          bracket = self.new
+          bracket.instance_variable_set(:@depth, data['depth'])
+          bracket.instance_variable_set(:@insertion_order, data['insertion_order'])
+          bracket.instance_variable_set(:@seed_order, data['seed_order'])
+          bracket.instance_variable_set(:@matches, data['matches'])
+
+          root_node = Node.from_h(data['root'])
+          bracket.instance_variable_set(:@root, root_node)
+
+          bracket
+
+        end
       end
 
       include Enumerable

@@ -1,6 +1,7 @@
 module BracketTree
   class Match
     attr_accessor :seats, :winner_to, :loser_to
+
     def initialize options = {}
       @seats = options[:seats] || []
       @winner_to = options[:winner_to]
@@ -13,6 +14,10 @@ module BracketTree
 
     alias_method :governs?, :include?
 
+    def self.from_h(hash)
+      Match.new(seats: hash['seats'], winner_to: hash['winner_to'], loser_to: hash['loser_to'])
+    end
+
     def to_h
       {
         seats: @seats,
@@ -20,5 +25,6 @@ module BracketTree
         loser_to: @loser_to
       }
     end
+
   end
 end
