@@ -12,9 +12,9 @@ module BracketTree
     end
 
     def self.from_h(hash)
-      node = Node.new(hash['position'], hash['payload'])
-      node.instance_variable_set(:@left, from_h(hash['left'])) if hash['left']
-      node.instance_variable_set(:@right, from_h(hash['right'])) if hash['right']
+      node = Node.new(hash[:position], hash[:payload])
+      node.instance_variable_set(:@left, from_h(hash[:left])) if hash[:left]
+      node.instance_variable_set(:@right, from_h(hash[:right])) if hash[:right]
 
       node
     end
