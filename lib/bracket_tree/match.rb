@@ -15,7 +15,7 @@ module BracketTree
     alias_method :governs?, :include?
 
     def self.from_h(hash)
-      Match.new(seats: hash['seats'], winner_to: hash['winner_to'], loser_to: hash['loser_to'])
+      new(seats: hash['seats'], winner_to: hash['winner_to'], loser_to: hash['loser_to'])
     end
 
     def to_h
