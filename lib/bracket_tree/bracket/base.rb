@@ -56,15 +56,15 @@ module BracketTree
         def from_json json_data
           data = JSON.parse(json_data, symbolize_names: true)
           bracket = self.new
-          bracket.instance_variable_set(:@depth, data['depth'])
-          bracket.instance_variable_set(:@insertion_order, data['insertion_order'])
-          bracket.instance_variable_set(:@seed_order, data['seed_order'])
+          bracket.instance_variable_set(:@depth, data[:depth])
+          bracket.instance_variable_set(:@insertion_order, data[:insertion_order])
+          bracket.instance_variable_set(:@seed_order, data[:seed_order])
 
-          puts data['matches']
-          match_data = data['matches'].map {|hash| Match.from_h(hash)}
+          puts data[:matches]
+          match_data = data[:matches].map {|hash| Match.from_h(hash)}
           bracket.instance_variable_set(:@matches, match_data)
 
-          root_node = Node.from_h(data['root'])
+          root_node = Node.from_h(data[:root])
           bracket.instance_variable_set(:@root, root_node)
 
           bracket
