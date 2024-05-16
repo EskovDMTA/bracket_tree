@@ -7,7 +7,7 @@ module BracketTree
     #   class MLGDouble < BracketTree::Bracket::Base
     #     template BracketTree::Template::DoubleElimination
     #   end
-    #   
+    #
     #   bracket = MLGDouble.by_size 8
     #
     # This creates a bracket based on the standard double elimination template class.
@@ -24,7 +24,7 @@ module BracketTree
     #    template MLGDoubleTemplate
     #  end
     class Base
-      class NoTemplateError < Exception ; end
+      class NoTemplateError < Exception; end
 
       class << self
         def by_size size, options = {}
@@ -35,7 +35,7 @@ module BracketTree
           @template = class_name
         end
 
-        # Generates a blank bracket object from the passed Template class for the 
+        # Generates a blank bracket object from the passed Template class for the
         # passed size
         #
         # @param BracketTree::Template::Base template - the Template the bracket is
@@ -124,7 +124,7 @@ module BracketTree
 
       def depth_check depth, position
         @depth[:total] = [depth, @depth[:total]].max
-        @depth[:left]  = [depth, @depth[:left] ].max if position < @root.position
+        @depth[:left] = [depth, @depth[:left]].max if position < @root.position
         @depth[:right] = [depth, @depth[:right]].max if position > @root.position
       end
 
@@ -172,6 +172,16 @@ module BracketTree
 
       def to_h
         @root.to_h
+      end
+
+      def to_json
+        {
+          depth:,
+          insertion_order:,
+          matches: @matches.map(&:to_h),
+          root: @root.to_h,
+          seed_order: @seed_order
+        }.to_json
       end
 
       # Array of Seats mapping to the individual positions of the bracket tree. The
@@ -224,7 +234,7 @@ module BracketTree
       # @return Boolean result - result of progression
       def match_loser seat
         match = @matches.find { |m| m.include? seat }
-        
+
         if match
           winning_seat = match.seats.find { |s| s != seat }
           match_winner winning_seat
