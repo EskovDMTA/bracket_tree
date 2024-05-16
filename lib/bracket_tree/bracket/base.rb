@@ -54,7 +54,7 @@ module BracketTree
         end
 
         def from_json json_data
-          data = JSON.parse(json_data)
+          data = JSON.parse(json_data, symbolize_names: true)
           bracket = self.new
           bracket.instance_variable_set(:@depth, data['depth'])
           bracket.instance_variable_set(:@insertion_order, data['insertion_order'])
