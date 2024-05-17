@@ -24,7 +24,8 @@ module BracketTree
         position: @position,
         payload: @payload,
         left: @left ? @left.to_h : nil,
-        right: @right ? @right.to_h : nil
+        right: @right ? @right.to_h : nil,
+        depth: @depth ? @depth : nil
       }
     end
 
